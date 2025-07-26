@@ -1,0 +1,6 @@
+name: structured_output_pipeline
+
+model:
+  detection: dbnet++.onnx
+  cls_direction: cls.onnx
+  recognition: rec.onnx

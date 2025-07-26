@@ -1,0 +1,147 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# See https://setuptools.pypa.io/en/latest/userguide/quickstart.html for more project configuration options.
+name = "myocr-kit"
+dynamic = ["version"]
+readme = "README.md"
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+authors = [
+    {name = "Nandan", email = "nandanpk4@gmail.com"}
+]
+requires-python = ">=3.11"
+dependencies = [
+    "numpy==2.2.4",
+    "opencv-python-headless~=4.11.0",
+    "onnxruntime==1.21.0",
+    "flask>=3.1.0",
+    "flask-cors==5.0.1",
+    "PyYAML==6.0.2",
+    "pyclipper~=1.3.0",
+    "openai==1.72.0",
+]
+license = {file = "LICENSE"}
+
+[project.urls]
+Homepage = "https://github.com/robbyzhaox/myocr"
+Repository = "https://github.com/robbyzhaox/myocr"
+Changelog = "https://github.com/robbyzhaox/myocr/blob/main/CHANGELOG.md"
+Documentation = "http://robbyzhaox.github.io/myocr/"
+
+[project.optional-dependencies]
+dev = [
+    "build",
+    "setuptools",
+    "wheel",
+    "packaging",
+    "torch>=2.5.1",
+    "torchvision==0.21.0",
+    "scipy==1.15.2",
+    "flask>=3.1.0",
+    "flask-cors==5.0.1",
+    "matplotlib==3.10.1",
+    "pydantic==2.11.2",
+    "ruff",
+    "mypy>=1.0,<2.0",
+    "black>=23.0,<26.0",
+    "black[jupyter]",
+    "isort>=5.12,<6.1",
+    "pytest",
+    "pytest-cov",
+    "twine>=1.11.0",
+    "notebook",
+]
+docs = [
+    "mike",
+    "mkdocs",
+    "mkdocs-material",
+    "jieba",
+    "mkdocs-git-revision-date-localized-plugin",
+    "mkdocs-git-committers-plugin-2",
+    "mkdocs-static-i18n",
+]
+
+[tool.setuptools.packages.find]
+exclude = [
+    "*.tests",
+    "*.tests.*",
+    "tests.*",
+    "tests",
+    "docs*",
+    "scripts*"
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+myocr = ["py.typed", "**/*.yaml", "**/*.yml"]
+
+[tool.setuptools.dynamic]
+version = {attr = "myocr.version.VERSION"}
+
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+exclude = '''
+(
+      __pycache__
+    | \.git
+    | \.mypy_cache
+    | \.pytest_cache
+    | \.vscode
+    | \.venv
+    | \bdist\b
+    | \bdoc\b
+)
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+# You can override these pyright settings by adding a personal pyrightconfig.json file.
+[tool.pyright]
+reportPrivateImportUsage = false
+
+[tool.ruff]
+line-length = 115
+target-version = "py311"
+extend-exclude = [
+    "myocr/models/**",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.mypy]
+ignore_missing_imports = true
+no_site_packages = true
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+strict_optional = false
+
+[[tool.mypy.overrides]]
+module = "myocr.util"
+ignore_errors = true 
+
+[tool.pytest.ini_options]
+testpaths = "tests/"
+python_classes = [
+  "Test*",
+  "*Test",
+  "*test"
+]
+log_format = "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
+log_level = "DEBUG"
+log_cli = true

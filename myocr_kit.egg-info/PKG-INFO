@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: myocr-kit
+Version: 0.1.1
+Author-email: Robby <robby.zhaox@gmail.com>
+Project-URL: Homepage, https://github.com/robbyzhaox/myocr
+Project-URL: Repository, https://github.com/robbyzhaox/myocr
+Project-URL: Changelog, https://github.com/robbyzhaox/myocr/blob/main/CHANGELOG.md
+Project-URL: Documentation, http://robbyzhaox.github.io/myocr/
+Classifier: Intended Audience :: Science/Research
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: numpy==2.2.4
+Requires-Dist: opencv-python-headless~=4.11.0
+Requires-Dist: onnxruntime==1.21.0
+Requires-Dist: flask>=3.1.0
+Requires-Dist: flask-cors==5.0.1
+Requires-Dist: PyYAML==6.0.2
+Requires-Dist: pyclipper~=1.3.0
+Requires-Dist: openai==1.72.0
+Provides-Extra: dev
+Requires-Dist: build; extra == "dev"
+Requires-Dist: setuptools; extra == "dev"
+Requires-Dist: wheel; extra == "dev"
+Requires-Dist: packaging; extra == "dev"
+Requires-Dist: torch>=2.5.1; extra == "dev"
+Requires-Dist: torchvision==0.21.0; extra == "dev"
+Requires-Dist: scipy==1.15.2; extra == "dev"
+Requires-Dist: flask>=3.1.0; extra == "dev"
+Requires-Dist: flask-cors==5.0.1; extra == "dev"
+Requires-Dist: matplotlib==3.10.1; extra == "dev"
+Requires-Dist: pydantic==2.11.2; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: mypy<2.0,>=1.0; extra == "dev"
+Requires-Dist: black<26.0,>=23.0; extra == "dev"
+Requires-Dist: black[jupyter]; extra == "dev"
+Requires-Dist: isort<6.1,>=5.12; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: twine>=1.11.0; extra == "dev"
+Requires-Dist: notebook; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: mike; extra == "docs"
+Requires-Dist: mkdocs; extra == "docs"
+Requires-Dist: mkdocs-material; extra == "docs"
+Requires-Dist: jieba; extra == "docs"
+Requires-Dist: mkdocs-git-revision-date-localized-plugin; extra == "docs"
+Requires-Dist: mkdocs-git-committers-plugin-2; extra == "docs"
+Requires-Dist: mkdocs-static-i18n; extra == "docs"
