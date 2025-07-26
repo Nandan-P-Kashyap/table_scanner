@@ -1,4 +1,8 @@
 requests
 pillow
 pyyaml
-# Add other packages you use
+flask
+pytesseract
+opencv-python
+gunicorn
+
