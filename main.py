@@ -165,6 +165,38 @@ def _do_ocr(pipeline, structured: bool = False):
     except Exception as e:
         logger.error("Unhandled OCR error: %s", exc_info=True)
         return jsonify({"error": "Internal OCR error"}), 500
+    
+# Your extraction logic
+def extract_missing_products(ocr_text):
+    lines = ocr_text.split('\n')
+    missing_products = []
+
+    for line in lines:
+        # if 'no' in line.lower() or 'x' in line.lower():
+        #     parts = line.split('\t')
+        #     if len(parts) > 0:
+        #         product_name = parts[0].strip()
+        #         missing_products.append(product_name)
+        #     else:
+        #         product_name = line.split(' ')[0]
+        #         missing_products.append(product_name)
+        if 'no' in line.lower() or 'x' in line.lower():
+            words = [word.strip() for word in line.split('\t') if word.strip()]
+            missing_products.append(words)
+
+    return missing_products
+
+# Route for processing OCR text
+@app.route('/process-ocr', methods=['POST'])
+def process_ocr():
+    data = request.get_json()
+    ocr_text = data.get('ocr_text', '')
+
+    if not ocr_text:
+        return jsonify({'error': 'No OCR text provided'}), 400
+
+    missing_items = extract_missing_products(ocr_text)
+    return jsonify({'missing_items': missing_items}), 200
 
 @app.route("/ocr", methods=["POST"])
 def ocr():
